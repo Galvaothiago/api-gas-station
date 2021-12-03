@@ -1,5 +1,9 @@
 package com.gasstation.api.repositories;
 
-public interface GasStationRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.gasstation.api.model.entities.GasStation;
+
+public interface GasStationRepository extends JpaRepository<GasStation, Long>{
 
 }
