@@ -23,6 +23,19 @@ public class GasStationService {
 		Optional<GasStation> result = repository.findById(id);
 		return result.get();
 	}
+	
+	public GasStation updateInfoGasStation(Long id, GasStation gasStation) {
+		GasStation entity = repository.getById(id);
+		update(entity, gasStation);
+		
+		return repository.save(entity);
+	}
+	
+	public void update(GasStation entity, GasStation gasStation) {
+		entity.setName(gasStation.getName());
+		entity.setUrlImg(gasStation.getUrlImg());
+		
+	}
 
 }
  

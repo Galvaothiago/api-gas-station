@@ -21,8 +21,7 @@ public class GasPriceService {
 	}
 	
 	public GasPrice updateGasPrice(Long id, GasPrice gasPrice) {
-		@SuppressWarnings("deprecation")
-		GasPrice entity = repository.getOne(id);
+		GasPrice entity = repository.getById(id);
 		update(entity, gasPrice);
 		return repository.save(entity);
 		
