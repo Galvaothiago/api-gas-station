@@ -1,7 +1,6 @@
 package com.gasstation.api.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +32,5 @@ public class GasStationController {
 		
 		return ResponseEntity.ok().body(result);
 	}
-//	public String welcome() {
-//		String descriptionMessage = "Welcome, check our documentation to see all endpoints available";
-//		return descriptionMessage;
-//	}
 	
 }
