@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,7 +21,8 @@ public class GasStation  implements Serializable {
 	private String name;
 	private String urlImg;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "prices_id")
 	private GasPrice prices;
 	
 	public GasStation() {

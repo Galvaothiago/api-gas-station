@@ -1,10 +1,12 @@
 package com.gasstation.api.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +25,13 @@ public class GasStationController {
 		List<GasStation> list = service.getAll();
 		
 		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<GasStation> getById(@PathVariable Long id) {
+		GasStation result = service.findById(id);
+		
+		return ResponseEntity.ok().body(result);
 	}
 //	public String welcome() {
 //		String descriptionMessage = "Welcome, check our documentation to see all endpoints available";

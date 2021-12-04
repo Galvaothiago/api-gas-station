@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.gasstation.api.model.entities.GasStation;
 
 public interface GasStationRepository extends JpaRepository<GasStation, Long>{
-
+	
 }

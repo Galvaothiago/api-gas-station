@@ -1,6 +1,7 @@
 package com.gasstation.api.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,11 @@ public class GasStationService {
 	
 	public List<GasStation> getAll() {
 		return repository.findAll();
+	}
+	
+	public GasStation findById(Long id) {
+		Optional<GasStation> result = repository.findById(id);
+		return result.get();
 	}
 
 }
