@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class GasStation  implements Serializable {
@@ -17,17 +18,21 @@ public class GasStation  implements Serializable {
 	private Long id;
 	private String name;
 	private String urlImg;
+
+	@OneToOne
+	private GasPrice prices;
 	
 	public GasStation() {
 		
 	}
 	
-	public GasStation(Long id, String name, String urlImg) {
+	public GasStation(Long id, String name, String urlImg, GasPrice prices) {
 		this.id = id;
 		this.name = name;
 		this.urlImg = urlImg;
+		this.prices = prices;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -51,6 +56,16 @@ public class GasStation  implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+	
+	
+
+	public GasPrice getPrices() {
+		return prices;
+	}
+
+	public void setPrices(GasPrice prices) {
+		this.prices = prices;
 	}
 
 	@Override
