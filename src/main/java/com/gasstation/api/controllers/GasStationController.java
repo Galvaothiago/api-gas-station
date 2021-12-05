@@ -21,6 +21,13 @@ public class GasStationController {
 	@Autowired
 	private GasStationService service;
 	
+	@GetMapping(path = "/page/{page}/{quantityItems}")
+	public ResponseEntity<Iterable<GasStation>> getAllByPageable(@PathVariable int page, @PathVariable int quantityItems) {
+		Iterable<GasStation> result = service.getAllByPage(page, quantityItems);
+		
+		return ResponseEntity.ok().body(result);
+	}
+	
 	@GetMapping
 	public ResponseEntity<List<GasStation>> getAll() {
 		List<GasStation> list = service.getAll();

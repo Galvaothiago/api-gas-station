@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.gasstation.api.model.entities.GasStation;
@@ -17,6 +19,15 @@ public class GasStationService {
 	
 	public List<GasStation> getAll() {
 		return repository.findAll();
+	}
+	
+	public Iterable<GasStation> getAllByPage(int page, int quantityItems) {
+		if(quantityItems >= 20) quantityItems = 20;
+		if(quantityItems == 0) quantityItems = 10; 
+		
+		Pageable pageResult = PageRequest.of(page, quantityItems);
+		return repository.findAll(pageResult);
+		
 	}
 	
 	public GasStation findById(Long id) {
