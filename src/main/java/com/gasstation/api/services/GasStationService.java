@@ -35,6 +35,10 @@ public class GasStationService {
 		return result.get();
 	}
 	
+	public Iterable<GasStation> getByName(String name) {
+		return repository.findByNameContainingIgnoreCase(name);
+	}
+	
 	public GasStation updateInfoGasStation(Long id, GasStation gasStation) {
 		GasStation entity = repository.getById(id);
 		update(entity, gasStation);

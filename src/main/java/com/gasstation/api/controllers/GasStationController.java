@@ -28,6 +28,13 @@ public class GasStationController {
 		return ResponseEntity.ok().body(result);
 	}
 	
+	@GetMapping(path = "/search/{searchName}")
+	public ResponseEntity<Iterable<GasStation>> getByName(@PathVariable String searchName) {
+		Iterable<GasStation> result = service.getByName(searchName);
+		
+		return ResponseEntity.ok().body(result);
+	}
+	
 	@GetMapping
 	public ResponseEntity<List<GasStation>> getAll() {
 		List<GasStation> list = service.getAll();
