@@ -25,15 +25,20 @@ public class GasStation  implements Serializable {
 	@JoinColumn(name = "prices_id")
 	private GasPrice prices;
 	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
 	public GasStation() {
 		
 	}
 	
-	public GasStation(Long id, String name, String urlImg, GasPrice prices) {
+	public GasStation(Long id, String name, String urlImg, GasPrice prices, Address address) {
 		this.id = id;
 		this.name = name;
 		this.urlImg = urlImg;
 		this.prices = prices;
+		this.address = address;
 	}
 
 	public Long getId() {
@@ -55,14 +60,7 @@ public class GasStation  implements Serializable {
 	public String getUrlImg() {
 		return urlImg;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
 	
-	
-
 	public GasPrice getPrices() {
 		return prices;
 	}
@@ -70,7 +68,16 @@ public class GasStation  implements Serializable {
 	public void setPrices(GasPrice prices) {
 		this.prices = prices;
 	}
+	
+	public Address getAddress() {
+		return this.address;
+	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
