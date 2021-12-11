@@ -9,7 +9,6 @@ import com.gasstation.api.model.entities.Address;
 public interface AddressRepository extends JpaRepository<Address, Long>{
 
 	public Slice<Address> findByStreetContainingIgnoreCase(String streetName, Pageable page);
-
-
-//	public Iterable<Address> findByCityIgnoreCase(String cityName, Pageable page);
+	
+	public Slice<Address> findByCityContainingIgnoreCase(String cityName, Pageable page);
 }

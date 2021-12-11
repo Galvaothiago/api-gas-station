@@ -72,6 +72,10 @@ public class GasStation  implements Serializable {
 	public Address getAddress() {
 		return this.address;
 	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	@Override
 	public int hashCode() {
