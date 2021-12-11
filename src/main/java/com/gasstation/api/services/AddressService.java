@@ -44,7 +44,6 @@ public class AddressService {
 		
 		Optional<GasStation> gasStation1 = gsRepository.findById(1L);
 		gasStation1.get().setAddress(address1);
-		gasStation1.get().setName("somar");
 		return address1;
 	}
 }

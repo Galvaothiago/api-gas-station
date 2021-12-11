@@ -30,12 +30,12 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {		
-		GasPrice price1 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, Instant.now());
-		GasPrice price2 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, Instant.now());
-		GasPrice price3 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, Instant.now());
-		GasPrice price4 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, Instant.now());
-		GasPrice price5 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, Instant.now());
-		GasPrice price6 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, Instant.now());
+		GasPrice price1 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20);
+		GasPrice price2 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50);
+		GasPrice price3 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20);
+		GasPrice price4 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50);
+		GasPrice price5 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20);
+		GasPrice price6 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50);
 		
 		Address address1 = new Address(null, "Rua maria pereira", "112", "Vinhedo");
 		Address address2 = new Address(null, "Rua Vinhedo", "112", "Vinhedo");

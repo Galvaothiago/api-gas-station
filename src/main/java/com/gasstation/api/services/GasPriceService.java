@@ -36,6 +36,10 @@ public class GasPriceService {
 		entity.setLastUpdate(Instant.now());
 		
 	}
+	
+	public GasPrice createPrice(GasPrice gasPrice) {
+		return repository.save(gasPrice);
+	}
 
 }
  

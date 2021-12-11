@@ -21,21 +21,26 @@ public class GasPrice implements Serializable{
 	private Double diesel;
 	private Double gasolineAdditive;
 	private Double ethanolAdditive;
-	private Instant lastUpdate;
+	private Instant lastUpdate = Instant.now();
 
 	public GasPrice() {
 		
 	}
-	
-	public GasPrice(Long id, Double gasoline, Double ethanol, Double diesel, Double gasolineAdditive, Double ethanolAdditive, Instant lastUpdate) {
+		
+	public GasPrice(Long id, Double gasoline, Double ethanol, Double diesel, Double gasolineAdditive, 
+			Double ethanolAdditive) {
+		
+		lastUpdate = Instant.now();
 		this.id = id;
 		this.gasoline = gasoline;
 		this.ethanol = ethanol;
 		this.diesel = diesel;
 		this.gasolineAdditive = gasolineAdditive;
 		this.ethanolAdditive = ethanolAdditive;
-		this.lastUpdate = lastUpdate;
 	}
+	
+	
+
 
 	public Long getId() {
 		return id;

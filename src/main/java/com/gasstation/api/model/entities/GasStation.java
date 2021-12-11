@@ -22,11 +22,11 @@ public class GasStation  implements Serializable {
 	private String urlImg;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "prices_id")
+	@JoinColumn(name = "prices_id", unique = true)
 	private GasPrice prices;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "address_id")
+	@JoinColumn(name = "address_id", unique = true)
 	private Address address;
 	
 	public GasStation() {
