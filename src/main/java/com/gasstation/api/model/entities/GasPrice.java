@@ -29,8 +29,6 @@ public class GasPrice implements Serializable{
 		
 	public GasPrice(Long id, Double gasoline, Double ethanol, Double diesel, Double gasolineAdditive, 
 			Double ethanolAdditive) {
-		
-		lastUpdate = Instant.now();
 		this.id = id;
 		this.gasoline = gasoline;
 		this.ethanol = ethanol;
