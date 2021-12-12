@@ -3,6 +3,7 @@ package com.gasstation.api.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,24 +22,22 @@ public class GasStation  implements Serializable {
 	private String name;
 	private String urlImg;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne( fetch = FetchType.EAGER)
 	@JoinColumn(name = "prices_id", unique = true)
 	private GasPrice prices;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "address_id", unique = true)
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "gasStation", cascade = CascadeType.ALL)
 	private Address address;
 	
 	public GasStation() {
 		
 	}
 	
-	public GasStation(Long id, String name, String urlImg, GasPrice prices, Address address) {
+	public GasStation(Long id, String name, String urlImg, GasPrice prices) {
 		this.id = id;
 		this.name = name;
 		this.urlImg = urlImg;
 		this.prices = prices;
-		this.address = address;
 	}
 
 	public Long getId() {

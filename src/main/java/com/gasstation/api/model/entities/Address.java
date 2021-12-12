@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Address implements Serializable{
@@ -19,15 +23,21 @@ public class Address implements Serializable{
 	private String number;
 	private String city;
 	
+	@JsonIgnore
+	@OneToOne
+	@MapsId
+	private GasStation gasStation;
+	
 	public Address() {
 		
 	}
 	
-	public Address(Long id, String street, String number, String city) {
+	public Address(Long id, String street, String number, String city, GasStation gasStation) {
 		this.id = id;
 		this.street = street;
 		this.number = number;
 		this.city = city;
+		this.gasStation = gasStation;
 	}
 
 	public Long getId() {
@@ -56,6 +66,14 @@ public class Address implements Serializable{
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	public GasStation getGasStation() {
+		return gasStation;
+	}
+
+	public void setGasStation(GasStation gasStation) {
+		this.gasStation = gasStation;
 	}
 
 	@Override
