@@ -51,6 +51,14 @@ public class GasStationService {
 		entity.setUrlImg(gasStation.getUrlImg());
 		
 	}
+	
+	public GasStation saveGasStation(GasStation gasStation) {
+		return repository.save(gasStation);
+	}
+	
+	public void deleteGasStation(Long id) {
+		repository.deleteById(id);
+	}
 
 }
  
