@@ -8,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class GasPrice implements Serializable{
@@ -23,23 +27,26 @@ public class GasPrice implements Serializable{
 	private Double ethanolAdditive;
 	private Instant lastUpdate = Instant.now();
 
+	@JsonIgnore
+	@OneToOne
+	@MapsId
+	GasStation gasStation;
+	
 	public GasPrice() {
 		
 	}
 		
 	public GasPrice(Long id, Double gasoline, Double ethanol, Double diesel, Double gasolineAdditive, 
-			Double ethanolAdditive) {
+			Double ethanolAdditive, GasStation gasStation) {
 		this.id = id;
 		this.gasoline = gasoline;
 		this.ethanol = ethanol;
 		this.diesel = diesel;
 		this.gasolineAdditive = gasolineAdditive;
 		this.ethanolAdditive = ethanolAdditive;
+		this.gasStation = gasStation;
 	}
 	
-	
-
-
 	public Long getId() {
 		return id;
 	}
@@ -92,6 +99,14 @@ public class GasPrice implements Serializable{
 		this.lastUpdate = lastUpdate;
 	}
 	
+	public GasStation getGasStation() {
+		return gasStation;
+	}
+
+	public void setGasStation(GasStation gasStation) {
+		this.gasStation = gasStation;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

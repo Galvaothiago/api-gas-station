@@ -22,8 +22,7 @@ public class GasStation  implements Serializable {
 	private String name;
 	private String urlImg;
 
-	@OneToOne( fetch = FetchType.EAGER)
-	@JoinColumn(name = "prices_id", unique = true)
+	@OneToOne( fetch = FetchType.EAGER, mappedBy = "gasStation", cascade = CascadeType.ALL)
 	private GasPrice prices;
 	
 	@OneToOne(fetch = FetchType.EAGER, mappedBy = "gasStation", cascade = CascadeType.ALL)
@@ -33,11 +32,10 @@ public class GasStation  implements Serializable {
 		
 	}
 	
-	public GasStation(Long id, String name, String urlImg, GasPrice prices) {
+	public GasStation(Long id, String name, String urlImg) {
 		this.id = id;
 		this.name = name;
 		this.urlImg = urlImg;
-		this.prices = prices;
 	}
 
 	public Long getId() {
