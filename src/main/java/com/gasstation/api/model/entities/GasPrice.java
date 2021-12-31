@@ -25,7 +25,7 @@ public class GasPrice implements Serializable{
 	private Double diesel;
 	private Double gasolineAdditive;
 	private Double ethanolAdditive;
-	private Instant lastUpdate = Instant.now();
+	private Instant lastUpdate;
 
 	@JsonIgnore
 	@OneToOne
@@ -36,8 +36,8 @@ public class GasPrice implements Serializable{
 		
 	}
 		
-	public GasPrice(Long id, Double gasoline, Double ethanol, Double diesel, Double gasolineAdditive, 
-			Double ethanolAdditive, GasStation gasStation) {
+	public GasPrice(Long id, Double gasoline, Double ethanol, Double diesel, Double gasolineAdditive,
+			Double ethanolAdditive, GasStation gasStation, Instant lastUpdate) {
 		this.id = id;
 		this.gasoline = gasoline;
 		this.ethanol = ethanol;
@@ -45,8 +45,9 @@ public class GasPrice implements Serializable{
 		this.gasolineAdditive = gasolineAdditive;
 		this.ethanolAdditive = ethanolAdditive;
 		this.gasStation = gasStation;
+		this.lastUpdate = lastUpdate;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}

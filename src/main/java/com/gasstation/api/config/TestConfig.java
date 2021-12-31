@@ -41,7 +41,7 @@ public class TestConfig implements CommandLineRunner{
 		GasStation company1 = new GasStation(null, "Posto ATMA", "https://amazons3.com/fdgkgjdfhdflfn");
 		
 		Address address1 = new Address(null, "Rua maria pereira", "112", "Vinhedo", company1);
-		GasPrice price1 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company1);
+		GasPrice price1 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company1, Instant.now());
 		
 		company1.setAddress(address1);
 		company1.setPrices(price1);
