@@ -3,6 +3,7 @@ package com.gasstation.api.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ public class Address implements Serializable{
 	private String city;
 	
 	@JsonIgnore
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@MapsId
 	private GasStation gasStation;
 	

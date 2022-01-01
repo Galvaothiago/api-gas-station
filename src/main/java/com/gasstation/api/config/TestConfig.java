@@ -30,8 +30,7 @@ public class TestConfig implements CommandLineRunner{
 		GasStation company3 = new GasStation(null, "Posto Estrela", "https://amazons3.com/fdgkgjdfhdflfn");
 		GasStation company4 = new GasStation(null, "Posto nova palmares", "https://amazons3.com/DFGNIFNBSDF46");
 		GasStation company5 = new GasStation(null, "Posto Preço bom", "https://amazons3.com/fdgkgjdfhdflfn");
-		GasStation company6 = new GasStation(null, "Posto praça 2", "https://amazons3.com/DFGNIFNBSDF46");
-//		
+		GasStation company6 = new GasStation(null, "Posto praça 2", "https://amazons3.com/DFGNIFNBSDF46");	
 					
 		Address address1 = new Address(null, "Rua maria pereira", "112", "Vinhedo", company1);
 		Address address2 = new Address(null, "Rua Vinhedo", "112", "Vinhedo", company2);
@@ -39,6 +38,7 @@ public class TestConfig implements CommandLineRunner{
 		Address address4 = new Address(null, "Rua Regina Giunco", "778", "Vinhedo", company4);
 		Address address5 = new Address(null, "Rua Osasco 2", "12", "Vinhedo", company5);
 		Address address6 = new Address(null, "Avenida Rufino norte", "889", "Vinhedo", company6);
+		
 		
 		GasPrice price1 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company1, Instant.now());
 		GasPrice price2 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, company2, Instant.now());
@@ -65,14 +65,6 @@ public class TestConfig implements CommandLineRunner{
 		company6.setAddress(address6);
 		company6.setPrices(price6);
 		
-		
-
-//		
-		
-
-//		
-//		priceRepository.saveAll(Arrays.asList(price1, price2, price3, price4, price5, price6));
-//		addressRepository.saveAll(Arrays.asList(address1));
 		gasStationRepository.saveAll(Arrays.asList(company1, company2, company3, company4, company5, company6));
 	}
 
