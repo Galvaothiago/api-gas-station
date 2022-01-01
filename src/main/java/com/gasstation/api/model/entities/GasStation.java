@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class GasStation  implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -66,12 +68,22 @@ public class GasStation  implements Serializable {
 		this.prices = prices;
 	}
 	
+	public void receiveGasPrice(GasPrice prices) {
+		this.prices = prices;
+		prices.receiveGasStation(this);
+	}
+	
 	public Address getAddress() {
 		return this.address;
 	}
 	
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+	public void receiveAddress(Address address) {
+		this.address = address;
+		address.receiveGasStation(this);
 	}
 
 	@Override

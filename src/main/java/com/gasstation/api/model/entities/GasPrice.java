@@ -25,6 +25,7 @@ public class GasPrice implements Serializable{
 	private Double diesel;
 	private Double gasolineAdditive;
 	private Double ethanolAdditive;
+	private Double relation_gas_ethanol;
 	private Instant lastUpdate;
 
 	@JsonIgnore
@@ -46,6 +47,7 @@ public class GasPrice implements Serializable{
 		this.ethanolAdditive = ethanolAdditive;
 		this.gasStation = gasStation;
 		this.lastUpdate = lastUpdate;
+		setRelationGasEthanol();
 	}
 
 	public Long getId() {
@@ -106,6 +108,24 @@ public class GasPrice implements Serializable{
 
 	public void setGasStation(GasStation gasStation) {
 		this.gasStation = gasStation;
+		gasStation.receiveGasPrice(this);
+	}
+	
+	public void receiveGasStation(GasStation gasStation) {
+		this.gasStation = gasStation;
+	}
+	
+	public void setRelationGasEthanol() {
+		Double gasoline = getGasoline();
+		Double ethanol = getEthanol();
+		
+		Double value = Double.valueOf(String.format("%.2f", (ethanol / gasoline)));
+		
+		this.relation_gas_ethanol = value;
+	}
+	
+	public Double getRelationGasEthanol() {
+		return this.relation_gas_ethanol;
 	}
 
 	@Override
