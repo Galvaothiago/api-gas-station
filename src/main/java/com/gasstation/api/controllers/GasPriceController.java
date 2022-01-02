@@ -20,9 +20,9 @@ public class GasPriceController {
 	@Autowired
 	private GasPriceService service;
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<GasPrice> getById(@PathVariable Long id) {
-		GasPrice result = service.findById(id);
+	@PostMapping(path = "/{id}")
+	public ResponseEntity<GasPrice> saveGasPrice(@PathVariable Long id, @RequestBody GasPrice gasPrice) {
+		GasPrice result = service.savePrice(id, gasPrice);
 		
 		return ResponseEntity.ok().body(result);
 	}
@@ -32,13 +32,5 @@ public class GasPriceController {
 		GasPrice result = service.updateGasPrice(id, gasPrice);
 	
 		return ResponseEntity.ok().body(result);
-	}
-	
-	@PostMapping
-	public ResponseEntity<GasPrice> saveGasPrice(@RequestBody GasPrice gasPrice) {
-		GasPrice result = service.createPrice(gasPrice);
-		
-		return ResponseEntity.ok().body(result);
-	}
-	
+	}	
 }

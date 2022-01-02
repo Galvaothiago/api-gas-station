@@ -7,24 +7,29 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import com.gasstation.api.model.entities.Address;
+import com.gasstation.api.model.entities.GasStation;
 import com.gasstation.api.repositories.AddressRepository;
 import com.gasstation.api.repositories.GasStationRepository;
 
 @Service
 public class AddressService {
 	@Autowired
-	AddressRepository repository;
+	private AddressRepository repository;
 	
 	@Autowired
-	GasStationRepository gsRepository;
+	private GasStationRepository gsRepository;
 	
 	@Autowired
 	GasStationService gsService;
 	
-	public Address saveAddress(Address address) {
-		Address address1 = repository.save(address);
+	public Address saveAddress(Long gasStation_id, Address address) {
+		GasStation gasStation = gsRepository.getById(gasStation_id);
 		
-		return address1;
+		address.setId(gasStation.getId());
+		gasStation.setAddress(address);
+		gsRepository.save(gasStation);
+		
+		return address;
 	}
 	
 	public Address updateAddress(Long id, Address address) {

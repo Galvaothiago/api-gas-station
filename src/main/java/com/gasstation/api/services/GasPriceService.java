@@ -1,12 +1,13 @@
 package com.gasstation.api.services;
 
 import java.time.Instant;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gasstation.api.model.entities.GasPrice;
+import com.gasstation.api.model.entities.GasStation;
+import com.gasstation.api.repositories.GasStationRepository;
 import com.gasstation.api.repositories.PriceRepository;
 
 @Service
@@ -15,9 +16,17 @@ public class GasPriceService {
 	@Autowired
 	private PriceRepository repository;
 	
-	public GasPrice findById(Long id) {
-		Optional<GasPrice> result = repository.findById(id);
-		return result.get();
+	@Autowired
+	private GasStationRepository gsRepository;
+	
+	public GasPrice savePrice(Long gasStation_id, GasPrice gasPrice) {
+		GasStation gasStation = gsRepository.getById(gasStation_id);
+		
+		gasPrice.setId(gasStation.getId());
+		gasStation.setPrices(gasPrice);
+		
+		gsRepository.save(gasStation);
+		return gasPrice;
 	}
 	
 	public GasPrice updateGasPrice(Long id, GasPrice gasPrice) {
@@ -37,10 +46,5 @@ public class GasPriceService {
 		entity.setRelationGasEthanol();
 		
 	}
-	
-	public GasPrice createPrice(GasPrice gasPrice) {
-		return repository.save(gasPrice);
-	}
-
 }
  

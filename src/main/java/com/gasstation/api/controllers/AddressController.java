@@ -21,9 +21,9 @@ public class AddressController {
 	@Autowired
 	private AddressService service;
 	
-	@PostMapping
-	public ResponseEntity<Address> saveAddress(@RequestBody Address address) {
-		Address address1 = service.saveAddress(address);
+	@PostMapping(path = "/{id}")
+	public ResponseEntity<Address> saveAddress(@PathVariable Long id, @RequestBody Address address) {
+		Address address1 = service.saveAddress(id, address);
 		
 		return ResponseEntity.ok().body(address1);
 	}
