@@ -43,12 +43,13 @@ public class GasStationController {
 		return ResponseEntity.ok().body(result);
 	}
 	
-	@GetMapping(path = "/searchPrice/gasoline/{price}/{page}/{quantityItems}")
+	@GetMapping(path = "/searchPrice/gasoline/{city}/{price}/{page}/{quantityItems}")
 	public ResponseEntity<Iterable<GasStation>> getAllByPriceOfGasoline(
+			@PathVariable String city,
 			@PathVariable Double price, 
 			@PathVariable int page, 
 			@PathVariable int quantityItems) {
-		Iterable<GasStation> result = service.findByPriceOfGasoline(price, page, quantityItems);
+		Iterable<GasStation> result = service.findByPriceOfGasoline(price, city, page, quantityItems);
 		
 		return ResponseEntity.ok().body(result);
 	}

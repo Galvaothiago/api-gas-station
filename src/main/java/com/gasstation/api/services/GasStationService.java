@@ -22,8 +22,10 @@ public class GasStationService {
 	}
 	
 	public Iterable<GasStation> getAllByPage(int page, int quantityItems) {
-		if(quantityItems >= 20) quantityItems = 20;
-		if(quantityItems == 0) quantityItems = 10; 
+		if(quantityItems > 20) quantityItems = 20;
+		if(quantityItems == 0) quantityItems = 10;
+		
+		if(page < 0) page = 0;
 		
 		Pageable pageResult = PageRequest.of(page, quantityItems);
 		return repository.findAll(pageResult);
@@ -61,8 +63,10 @@ public class GasStationService {
 	}
 	
 	public Iterable<GasStation> findByAddressStreet(String street, int page, int quantityItems) {
-		if(quantityItems >= 20) quantityItems = 20;
+		if(quantityItems > 20) quantityItems = 20;
 		if(quantityItems == 0) quantityItems = 10;
+		
+		if(page < 0) page = 0;
 		
 		String upperStreet = street.toUpperCase();
 		
@@ -72,8 +76,10 @@ public class GasStationService {
 	}
 	
 	public Iterable<GasStation> findByAddressCity(String city, int page, int quantityItems) {
-		if(quantityItems >= 20) quantityItems = 20;
+		if(quantityItems > 20) quantityItems = 20;
 		if(quantityItems == 0) quantityItems = 10;
+		
+		if(page < 0) page = 0;
 		
 		String upperCity = city.toUpperCase();
 		
@@ -82,13 +88,17 @@ public class GasStationService {
 		
 	}
 	
-	public Iterable<GasStation> findByPriceOfGasoline(Double price, int page, int quantityItems) {
-		if(quantityItems >= 20) quantityItems = 20;
+	public Iterable<GasStation> findByPriceOfGasoline(Double price, String city, int page, int quantityItems) {
+		if(quantityItems > 20) quantityItems = 20;
 		if(quantityItems == 0) quantityItems = 10;
 		
+		if(page < 0) page = 0;
+		if(price <= 0) price = 1.0;
+		
+		city = city.toUpperCase();
 		
 		Pageable result = PageRequest.of(page, quantityItems);
-		return repository.findByPriceOfGasoline(price, result);
+		return repository.findByPriceOfGasoline(price, city, result);
 		
 	}
 
