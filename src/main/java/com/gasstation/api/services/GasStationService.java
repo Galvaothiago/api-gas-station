@@ -59,6 +59,17 @@ public class GasStationService {
 	public void deleteGasStation(Long id) {
 		repository.deleteById(id);
 	}
+	
+	public Iterable<GasStation> findByAddressStreet(String street, int page, int quantityItems) {
+		if(quantityItems >= 20) quantityItems = 20;
+		if(quantityItems == 0) quantityItems = 10;
+		
+		String upperStreet = street.toUpperCase();
+		
+		Pageable result = PageRequest.of(page, quantityItems);
+		return repository.findByAddressStreet(upperStreet, result);
+		
+	}
 
 }
  

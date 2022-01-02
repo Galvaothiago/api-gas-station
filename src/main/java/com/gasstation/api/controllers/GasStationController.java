@@ -23,6 +23,16 @@ public class GasStationController {
 	@Autowired
 	private GasStationService service;
 	
+	@GetMapping(path = "/searchAddress/{street}/{page}/{quantityItems}")
+	public ResponseEntity<Iterable<GasStation>> getAllByAddresStreet(
+			@PathVariable String street, 
+			@PathVariable int page, 
+			@PathVariable int quantityItems) {
+		Iterable<GasStation> result = service.findByAddressStreet(street, page, quantityItems);
+		
+		return ResponseEntity.ok().body(result);
+	}
+	
 	@GetMapping(path = "/page/{page}/{quantityItems}")
 	public ResponseEntity<Iterable<GasStation>> getAllByPageable(@PathVariable int page, @PathVariable int quantityItems) {
 		Iterable<GasStation> result = service.getAllByPage(page, quantityItems);

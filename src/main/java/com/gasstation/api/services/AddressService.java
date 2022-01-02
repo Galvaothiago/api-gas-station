@@ -21,23 +21,6 @@ public class AddressService {
 	@Autowired
 	GasStationService gsService;
 	
-	public Slice<Address> getAllByStreet(String streetName, int page, int quantityItems) {
-		if(quantityItems >= 20) quantityItems = 20;
-		if(quantityItems == 0) quantityItems = 10; 
-		
-		Pageable pageResult = PageRequest.of(page, quantityItems);
-		return repository.findByStreetContainingIgnoreCase(streetName, pageResult);
-		
-	}
-	
-	public Slice<Address> getAllByCity(String cityName, int page, int quantityItems) {
-		if(quantityItems >= 20) quantityItems = 20;
-		if(quantityItems == 0) quantityItems = 10; 
-		
-		Pageable pageResult = PageRequest.of(page, quantityItems);
-		return repository.findByCityContainingIgnoreCase(cityName, pageResult);
-	}
-	
 	public Address saveAddress(Address address) {
 		Address address1 = repository.save(address);
 		

@@ -21,20 +21,6 @@ public class AddressController {
 	@Autowired
 	private AddressService service;
 	
-	@GetMapping(value = "/searchByStreet/{streetName}/{page}/{quantity}")
-	public ResponseEntity<Iterable<Address>> getAllByStreet(@PathVariable String streetName, @PathVariable int page, @PathVariable int quantity) {
-		Slice<Address> result = service.getAllByStreet(streetName, page, quantity);
-		
-		return ResponseEntity.ok().body(result);
-	}
-	
-	@GetMapping(value = "/searchByCity/{cityName}/{page}/{quantity}")
-	public ResponseEntity<Iterable<Address>> getAllByCity(@PathVariable String cityName, @PathVariable int page, @PathVariable int quantity) {
-		Slice<Address> result = service.getAllByCity(cityName, page, quantity);
-		
-		return ResponseEntity.ok().body(result);
-	}
-	
 	@PostMapping
 	public ResponseEntity<Address> saveAddress(@RequestBody Address address) {
 		Address address1 = service.saveAddress(address);
