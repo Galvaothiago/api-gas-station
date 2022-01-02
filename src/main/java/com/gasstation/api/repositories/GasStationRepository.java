@@ -13,4 +13,7 @@ public interface GasStationRepository extends JpaRepository<GasStation, Long>{
 	
 	@Query("select g from GasStation g join g.address address where UPPER(address.street) like %?1%")
 	public Slice<GasStation> findByAddressStreet(String street, Pageable pageable);
+	
+	@Query("select g from GasStation g join g.address address where UPPER(address.city) like %?1%")
+	public Slice<GasStation> findByAddressCity(String city, Pageable pageable);
 }

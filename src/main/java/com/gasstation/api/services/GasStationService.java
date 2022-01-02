@@ -70,6 +70,17 @@ public class GasStationService {
 		return repository.findByAddressStreet(upperStreet, result);
 		
 	}
+	
+	public Iterable<GasStation> findByAddressCity(String city, int page, int quantityItems) {
+		if(quantityItems >= 20) quantityItems = 20;
+		if(quantityItems == 0) quantityItems = 10;
+		
+		String upperCity = city.toUpperCase();
+		
+		Pageable result = PageRequest.of(page, quantityItems);
+		return repository.findByAddressCity(upperCity, result);
+		
+	}
 
 }
  
