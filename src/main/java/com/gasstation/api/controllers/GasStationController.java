@@ -54,6 +54,17 @@ public class GasStationController {
 		return ResponseEntity.ok().body(result);
 	}
 	
+	@GetMapping(path = "/searchPrice/ethanol/{city}/{price}/{page}/{quantityItems}")
+	public ResponseEntity<Iterable<GasStation>> getAllByPriceOfEthanol(
+			@PathVariable String city,
+			@PathVariable Double price, 
+			@PathVariable int page, 
+			@PathVariable int quantityItems) {
+		Iterable<GasStation> result = service.findByPriceOfEthanol(price, city, page, quantityItems);
+		
+		return ResponseEntity.ok().body(result);
+	}
+	
 	@GetMapping(path = "/page/{page}/{quantityItems}")
 	public ResponseEntity<Iterable<GasStation>> getAllByPageable(@PathVariable int page, @PathVariable int quantityItems) {
 		Iterable<GasStation> result = service.getAllByPage(page, quantityItems);

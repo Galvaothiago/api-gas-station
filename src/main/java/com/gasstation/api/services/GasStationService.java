@@ -101,6 +101,20 @@ public class GasStationService {
 		return repository.findByPriceOfGasoline(price, city, result);
 		
 	}
+	
+	public Iterable<GasStation> findByPriceOfEthanol(Double price, String city, int page, int quantityItems) {
+		if(quantityItems > 20) quantityItems = 20;
+		if(quantityItems == 0) quantityItems = 10;
+		
+		if(page < 0) page = 0;
+		if(price <= 0) price = 1.0;
+		
+		city = city.toUpperCase();
+		
+		Pageable result = PageRequest.of(page, quantityItems);
+		return repository.findByPriceOfEthanol(price, city, result);
+		
+	}
 
 }
  
