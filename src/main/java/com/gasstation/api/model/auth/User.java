@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 @Entity
@@ -32,7 +33,14 @@ public class User implements Serializable {
 	@NotBlank
 	@Size(max = 25)
 	private String username;
+	
+	@NotBlank
+	@Size(max = 45)
+	@Email
 	private String email;
+	
+	@NotBlank
+	@Size(max = 100)
 	private String password;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -46,9 +54,7 @@ public class User implements Serializable {
 		super();
 	}
 
-	public User(Long id, String username, String email, String password, Set<Role> roles) {
-		super();
-		this.id = id;
+	public User(String username, String email, String password, Set<Role> roles) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
