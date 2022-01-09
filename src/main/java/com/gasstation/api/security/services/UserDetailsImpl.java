@@ -48,10 +48,31 @@ public class UserDetailsImpl implements UserDetails {
 				user.getPassword(),
 				authorities);
 	}
+	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		return authorities;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	@Override
@@ -61,7 +82,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return null;
+		return username;
 	}
 
 	@Override
