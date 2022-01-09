@@ -52,4 +52,10 @@ public class AddressService {
 		
 		return result;
 	}
+	
+	public Iterable<CountingCity> countAllCity() {
+		Iterable<CountingCity> result = repository.countAllCity();
+		
+		return result;
+	}
 }

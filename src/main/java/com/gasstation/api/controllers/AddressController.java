@@ -48,4 +48,12 @@ public class AddressController {
 		return ResponseEntity.ok().body(result);
 	}
 	
+	@GetMapping(path = "/count")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<Iterable<CountingCity>> countAllCity() {
+		Iterable<CountingCity> result = service.countAllCity();
+		
+		return ResponseEntity.ok().body(result);
+	}
+	
 }
