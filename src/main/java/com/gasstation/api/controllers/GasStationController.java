@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gasstation.api.model.entities.GasStation;
 import com.gasstation.api.services.GasStationService;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(path = "/api/gasStation" )
+@RequestMapping(value = {"/api/gasStation"})
 public class GasStationController {
 	
 	@Autowired
@@ -79,10 +82,14 @@ public class GasStationController {
 		return ResponseEntity.ok().body(result);
 	}
 	
+	
 	@GetMapping
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<List<GasStation>> getAll() {
 		List<GasStation> list = service.getAll();
 		
+		
+		System.out.println("get all: success request");
 		return ResponseEntity.ok().body(list);
 	}
 	
@@ -94,13 +101,15 @@ public class GasStationController {
 	}
 	
 	@PutMapping(value = "/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<GasStation> updateGasStation(@PathVariable Long id, @RequestBody GasStation gasStation) {
 		GasStation result = service.updateInfoGasStation(id, gasStation);
 		
 		return ResponseEntity.ok().body(result);
 	}
-	
+
 	@PostMapping
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<GasStation> createGasStation(@RequestBody GasStation gasStation) {
 		GasStation result = service.saveGasStation(gasStation);
 		
@@ -108,6 +117,7 @@ public class GasStationController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Void> deleteGasStation(@PathVariable Long id) {
 		service.deleteGasStation(id);
 		
