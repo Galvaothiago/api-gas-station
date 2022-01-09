@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
+import com.gasstation.api.model.CountingCity;
 import com.gasstation.api.model.entities.Address;
 import com.gasstation.api.model.entities.GasStation;
 import com.gasstation.api.repositories.AddressRepository;
@@ -44,5 +45,11 @@ public class AddressService {
 		entity.setStreet(address.getStreet());
 		entity.setNumber(address.getNumber());
 		entity.setCity(address.getCity());
+	}
+	
+	public CountingCity countingByCity(String city) {
+		CountingCity result = repository.findCountCity(city);
+		
+		return result;
 	}
 }
