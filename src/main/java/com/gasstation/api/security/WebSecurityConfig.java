@@ -20,7 +20,10 @@ import com.gasstation.api.security.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(
+		 securedEnabled = true,
+		 jsr250Enabled = true,
+		prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
@@ -55,12 +58,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.cors().and().csrf().disable()
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests().antMatchers("/").permitAll()
-			.antMatchers("/h2-console/***").permitAll()
-			.antMatchers("/api/auth/**").permitAll();
-			
-//			.antMatchers("/api/gasStation/***", "/api/address/***", "/api/gasPrice/***").authenticated()
-//			.anyRequest().authenticated();
+			.authorizeRequests().antMatchers("/api/auth/***", "/api/gasStation/***").permitAll()
+			.antMatchers("/api/address/***").permitAll()
+			.antMatchers("/api/gasPrice/***").permitAll()
+			.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
