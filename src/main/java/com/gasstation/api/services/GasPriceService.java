@@ -37,6 +37,8 @@ public class GasPriceService {
 	}
 	
 	public void update(GasPrice entity, GasPrice gasPrice) {
+		entity.setLastEthanolPrice(entity.getEthanol());
+		entity.setLastGasPrice(entity.getGasoline());
 		entity.setGasoline(gasPrice.getGasoline());
 		entity.setEthanol(gasPrice.getEthanol());
 		entity.setDiesel(gasPrice.getDiesel());
