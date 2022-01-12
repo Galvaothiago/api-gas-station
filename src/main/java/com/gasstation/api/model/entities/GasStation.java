@@ -23,6 +23,7 @@ public class GasStation  implements Serializable {
 	private Long id;
 	private String name;
 	private String urlImg;
+	private boolean isThereConvenience; 
 
 	@OneToOne( fetch = FetchType.EAGER, mappedBy = "gasStation", cascade = CascadeType.ALL)
 	private GasPrice prices;
@@ -34,12 +35,13 @@ public class GasStation  implements Serializable {
 		
 	}
 	
-	public GasStation(Long id, String name, String urlImg) {
+	public GasStation(Long id, String name, String urlImg, boolean isThereconvenience) {
 		this.id = id;
 		this.name = name;
 		this.urlImg = urlImg;
+		this.isThereConvenience = isThereconvenience;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -84,6 +86,16 @@ public class GasStation  implements Serializable {
 	public void receiveAddress(Address address) {
 		this.address = address;
 		address.receiveGasStation(this);
+	}
+	
+	
+
+	public boolean isThereConvenience() {
+		return isThereConvenience;
+	}
+
+	public void setThereConvenience(boolean isThereConvenience) {
+		this.isThereConvenience = isThereConvenience;
 	}
 
 	@Override

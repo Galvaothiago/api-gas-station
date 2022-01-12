@@ -25,16 +25,16 @@ public class TestConfig implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {		
 	
-		GasStation company1 = new GasStation(null, "Posto ATMA", "https://amazons3.com/fdgkgjdfhdflfn");
-		GasStation company2 = new GasStation(null, "Posto CAPELA", "https://amazons3.com/DFGNIFNBSDF46");
-		GasStation company3 = new GasStation(null, "Posto Estrela", "https://amazons3.com/fdgkgjdfhdflfn");
-		GasStation company4 = new GasStation(null, "Posto nova palmares", "https://amazons3.com/DFGNIFNBSDF46");
-		GasStation company5 = new GasStation(null, "Posto Preço bom", "https://amazons3.com/fdgkgjdfhdflfn");
-		GasStation company6 = new GasStation(null, "Posto praça 2", "https://amazons3.com/DFGNIFNBSDF46");
-		GasStation company7 = new GasStation(null, "Posto Test3", "https://amazons3.com/DFGNIFNBSDF46");
-		GasStation company8 = new GasStation(null, "Posto Divino", "https://amazons3.com/fdgkgjdfhdflfn");
-		GasStation company9 = new GasStation(null, "Posto Matão", "https://amazons3.com/DFGNIFNBSDF46");
-		GasStation company10 = new GasStation(null, "Posto test4", "https://amazons3.com/DFGNIFNBSDF046");
+		GasStation company1 = new GasStation(null, "Posto ATMA", "https://amazons3.com/fdgkgjdfhdflfn", true);
+		GasStation company2 = new GasStation(null, "Posto CAPELA", "https://amazons3.com/DFGNIFNBSDF46", true);
+		GasStation company3 = new GasStation(null, "Posto Estrela", "https://amazons3.com/fdgkgjdfhdflfn", true);
+		GasStation company4 = new GasStation(null, "Posto nova palmares", "https://amazons3.com/DFGNIFNBSDF46", false);
+		GasStation company5 = new GasStation(null, "Posto Preço bom", "https://amazons3.com/fdgkgjdfhdflfn", false);
+		GasStation company6 = new GasStation(null, "Posto praça 2", "https://amazons3.com/DFGNIFNBSDF46", true);
+		GasStation company7 = new GasStation(null, "Posto Test3", "https://amazons3.com/DFGNIFNBSDF46", false);
+		GasStation company8 = new GasStation(null, "Posto Divino", "https://amazons3.com/fdgkgjdfhdflfn", false);
+		GasStation company9 = new GasStation(null, "Posto Matão", "https://amazons3.com/DFGNIFNBSDF46", false);
+		GasStation company10 = new GasStation(null, "Posto test4", "https://amazons3.com/DFGNIFNBSDF046", false);
 
 		Address address1 = new Address(null, "Rua maria pereira", "112", "Vinhedo", company1);
 		Address address2 = new Address(null, "Rua Vinhedo", "112", "Vinhedo", company2);
