@@ -35,7 +35,7 @@ public class GasPriceController {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<GasPrice> updateGasPrice(@PathVariable Long id, @RequestBody GasPrice gasPrice) {
 		GasPrice result = service.updateGasPrice(id, gasPrice);
-	
+
 		return ResponseEntity.ok().body(result);
 	}	
 }

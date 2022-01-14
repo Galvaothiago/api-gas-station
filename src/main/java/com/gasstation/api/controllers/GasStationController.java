@@ -97,7 +97,10 @@ public class GasStationController {
 	public ResponseEntity<GasStation> getById(@PathVariable Long id) {
 		GasStation result = service.findById(id);
 		
-		return ResponseEntity.ok().body(result);
+		if(result != null) {
+			return ResponseEntity.ok().body(result);	
+		}
+		return ResponseEntity.notFound().build();
 	}
 	
 	@PutMapping(value = "/{id}")

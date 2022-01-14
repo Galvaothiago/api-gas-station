@@ -34,7 +34,12 @@ public class GasStationService {
 	
 	public GasStation findById(Long id) {
 		Optional<GasStation> result = repository.findById(id);
-		return result.get();
+		
+		if(result.isPresent()) {
+			return result.get();
+		}
+		
+		return null;
 	}
 	
 	public Iterable<GasStation> getByName(String name) {
