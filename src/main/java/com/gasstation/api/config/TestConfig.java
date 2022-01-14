@@ -48,16 +48,16 @@ public class TestConfig implements CommandLineRunner{
 		Address address10 = new Address(null, "Rua Pereira Barreto", "1889", "Paulinia", company10);
 		
 		
-		GasPrice price1 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company1, Instant.now());
-		GasPrice price2 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, company2, Instant.now());
-		GasPrice price3 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company3, Instant.now());
-		GasPrice price4 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, company4, Instant.now());
-		GasPrice price5 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company5, Instant.now());
-		GasPrice price6 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, company6, Instant.now());
-		GasPrice price7 = new GasPrice(null, 6.50, 4.88, 4.30, 6.55, 5.15, company7, Instant.now());
-		GasPrice price8 = new GasPrice(null, 6.62, 4.89, 4.95, 6.65, 5.50, company8, Instant.now());
-		GasPrice price9 = new GasPrice(null, 6.50, 4.75, 4.50, 6.90, 5.30, company9, Instant.now());
-		GasPrice price10 = new GasPrice(null, 6.39, 4.69, 4.55, 6.45, 5.10, company10, Instant.now());
+		GasPrice price1 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company1, Instant.now(), "galvaothiago");
+		GasPrice price2 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, company2, Instant.now(),"galvaothiago");
+		GasPrice price3 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company3, Instant.now(),"galvaothiago");
+		GasPrice price4 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, company4, Instant.now(), "galvaothiago");
+		GasPrice price5 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company5, Instant.now(), "galvaothiago");
+		GasPrice price6 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, company6, Instant.now(), "galvaothiago");
+		GasPrice price7 = new GasPrice(null, 6.50, 4.88, 4.30, 6.55, 5.15, company7, Instant.now(), "galvaothiago");
+		GasPrice price8 = new GasPrice(null, 6.62, 4.89, 4.95, 6.65, 5.50, company8, Instant.now(), "galvaothiago");
+		GasPrice price9 = new GasPrice(null, 6.50, 4.75, 4.50, 6.90, 5.30, company9, Instant.now(), "galvaothiago");
+		GasPrice price10 = new GasPrice(null, 6.39, 4.69, 4.55, 6.45, 5.10, company10, Instant.now(), "galvaothiago");
 		
 		company1.setAddress(address1);
 		company1.setPrices(price1);

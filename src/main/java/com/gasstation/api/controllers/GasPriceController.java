@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gasstation.api.model.auth.User;
 import com.gasstation.api.model.entities.GasPrice;
 import com.gasstation.api.services.GasPriceService;
 

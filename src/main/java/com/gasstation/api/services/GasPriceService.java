@@ -5,6 +5,7 @@ import java.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gasstation.api.model.auth.User;
 import com.gasstation.api.model.entities.GasPrice;
 import com.gasstation.api.model.entities.GasStation;
 import com.gasstation.api.repositories.GasStationRepository;
@@ -46,6 +47,7 @@ public class GasPriceService {
 		entity.setEthanolAdditive(gasPrice.getEthanolAdditive());
 		entity.setupdatedAt(Instant.now());
 		entity.setRelationGasEthanol();
+		entity.setUpdatedBy(gasPrice.getUpdatedBy());
 		
 	}
 }
