@@ -25,6 +25,7 @@ public class Address implements Serializable{
 	private String street;
 	private String number;
 	private String city;
+	private String state;
 	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
@@ -35,11 +36,12 @@ public class Address implements Serializable{
 		
 	}
 	
-	public Address(Long id, String street, String number, String city, GasStation gasStation) {
+	public Address(Long id, String street, String number, String city, String state, GasStation gasStation) {
 		this.id = id;
 		this.street = street;
 		this.number = number;
 		this.city = city;
+		this.state = state;
 		this.gasStation = gasStation;
 	}
 
@@ -75,6 +77,14 @@ public class Address implements Serializable{
 		this.city = city;
 	}
 	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	public GasStation getGasStation() {
 		return gasStation;
 	}

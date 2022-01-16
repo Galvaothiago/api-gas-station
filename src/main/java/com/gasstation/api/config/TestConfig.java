@@ -36,16 +36,16 @@ public class TestConfig implements CommandLineRunner{
 		GasStation company9 = new GasStation(null, "Posto Matão", "https://amazons3.com/DFGNIFNBSDF46", false);
 		GasStation company10 = new GasStation(null, "Posto test4", "https://amazons3.com/DFGNIFNBSDF046", false);
 
-		Address address1 = new Address(null, "Rua maria pereira", "112", "Vinhedo", company1);
-		Address address2 = new Address(null, "Rua Vinhedo", "112", "Vinhedo", company2);
-		Address address3 = new Address(null, "Avenida Independencia", "2135", "Vinhedo", company3);
-		Address address4 = new Address(null, "Rua Regina Giunco", "778", "Vinhedo", company4);
-		Address address5 = new Address(null, "Rua Osasco 2", "12", "Vinhedo", company5);
-		Address address6 = new Address(null, "Avenida Rufino norte", "889", "Vinhedo", company6);
-		Address address7 = new Address(null, "Avenida Matão", "1140", "Paulinia", company7);
-		Address address8 = new Address(null, "Rua Independencia", "320", "Valinhos", company8);
-		Address address9 = new Address(null, "Rua Oscar Remo", "5812", "Valinhos", company9);
-		Address address10 = new Address(null, "Rua Pereira Barreto", "1889", "Paulinia", company10);
+		Address address1 = new Address(null, "Rua maria pereira", "112", "Vinhedo", "São Paulo", company1);
+		Address address2 = new Address(null, "Rua Vinhedo", "112", "Vinhedo", "São Paulo",company2);
+		Address address3 = new Address(null, "Avenida Independencia", "2135", "Vinhedo", "São Paulo",company3);
+		Address address4 = new Address(null, "Rua Regina Giunco", "778", "Vinhedo", "São Paulo",company4);
+		Address address5 = new Address(null, "Rua Osasco 2", "12", "Vinhedo", "São Paulo",company5);
+		Address address6 = new Address(null, "Avenida Rufino norte", "889", "Vinhedo", "São Paulo",company6);
+		Address address7 = new Address(null, "Avenida Matão", "1140", "Paulinia", "São Paulo",company7);
+		Address address8 = new Address(null, "Rua Independencia", "320", "Valinhos", "São Paulo",company8);
+		Address address9 = new Address(null, "Rua Oscar Remo", "5812", "Valinhos", "São Paulo",company9);
+		Address address10 = new Address(null, "Rua Pereira Barreto", "1889", "Paulinia", "São Paulo",company10);
 		
 		
 		GasPrice price1 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company1, Instant.now(), "galvaothiago");
