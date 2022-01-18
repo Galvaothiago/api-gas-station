@@ -2,11 +2,15 @@ package com.gasstation.api.controllers.auth;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +35,7 @@ import com.gasstation.api.payload.request.TokenRefreshRequest;
 import com.gasstation.api.payload.response.JwtResponse;
 import com.gasstation.api.payload.response.MessageResponse;
 import com.gasstation.api.payload.response.TokenRefreshResponse;
+import com.gasstation.api.payload.response.UserInfo;
 import com.gasstation.api.repositories.auth.RoleRepository;
 import com.gasstation.api.repositories.auth.UserRepository;
 import com.gasstation.api.security.exceptions.TokenRefreshException;
@@ -37,10 +43,13 @@ import com.gasstation.api.security.jwt.JwtUtils;
 import com.gasstation.api.security.services.RefreshTokenService;
 import com.gasstation.api.security.services.UserDetailsImpl;
 
+import io.jsonwebtoken.ExpiredJwtException;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+	private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 	
 	@Autowired
 	AuthenticationManager authenticationManager;
@@ -146,6 +155,38 @@ public class AuthController {
 	        })
 	        .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
 	            "Refresh token is not in database!"));
+	  }
+	  
+	  @GetMapping("/me")
+	  public ResponseEntity<UserInfo> getUserInfo(HttpServletRequest request) {
+		  try {
+			  
+			  String[] headerAuth = request.getHeader("Authorization").split(" ");
+			  String token = headerAuth[1];
+			  
+			  Optional<User> user = userRepository.findByUsername(jwtUtils.getUserNameFromJwtToken(token));
+		
+			  if(user.isPresent()) {
+				  User userInfo = user.get();
+				  
+				  UserInfo u = new UserInfo(userInfo.getId(), 
+						  userInfo.getUsername(), 
+						  userInfo.getEmail(), 
+						  userInfo.getRoles());
+				  
+				  return ResponseEntity.ok().body(u);
+			  }				
+				  
+			  return ResponseEntity.notFound().build();
+					   
+			  
+		  } catch(ArrayIndexOutOfBoundsException e) {
+			  logger.error(e.getMessage());
+		  } catch(ExpiredJwtException e) {
+			  logger.error(e.getMessage());
+		  } 
+		  
+		  return ResponseEntity.notFound().build();
 	  }
 
 }
