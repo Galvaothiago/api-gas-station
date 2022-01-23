@@ -23,7 +23,7 @@ public class TestConfig implements CommandLineRunner{
 	private GasStationRepository gasStationRepository;
 	
 	@Override
-	public void run(String... args) throws Exception {		
+	public void run(String... args) throws Exception {
 	
 		GasStation company1 = new GasStation(null, "Posto ATMA", "https://amazons3.com/fdgkgjdfhdflfn", true);
 		GasStation company2 = new GasStation(null, "Posto CAPELA", "https://amazons3.com/DFGNIFNBSDF46", true);
@@ -46,7 +46,6 @@ public class TestConfig implements CommandLineRunner{
 		Address address8 = new Address(null, "Rua Independencia", "320", "Valinhos", "São Paulo",company8);
 		Address address9 = new Address(null, "Rua Oscar Remo", "5812", "Valinhos", "São Paulo",company9);
 		Address address10 = new Address(null, "Rua Pereira Barreto", "1889", "Paulinia", "São Paulo",company10);
-		
 		
 		GasPrice price1 = new GasPrice(null, 6.30, 4.80, 4.70, 6.40, 5.20, company1, Instant.now(), "galvaothiago");
 		GasPrice price2 = new GasPrice(null, 6.52, 4.79, 4.55, 6.35, 5.50, company2, Instant.now(),"galvaothiago");
