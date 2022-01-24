@@ -3,10 +3,8 @@ package com.gasstation.api.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,9 +12,11 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
-public class Address implements Serializable{
+public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -118,7 +118,7 @@ public class Address implements Serializable{
 	
 	@Override
 	public String toString() {
-		return street + " ," + number + " - " + city;
+		return street + ", " + number + " - " + city + ", " + state;
 	}
 	
 	

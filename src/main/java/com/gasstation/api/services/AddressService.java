@@ -1,10 +1,12 @@
 package com.gasstation.api.services;
 
+import java.lang.reflect.Field;
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
 import com.gasstation.api.model.CountingCity;
 import com.gasstation.api.model.entities.Address;
@@ -20,9 +22,6 @@ public class AddressService {
 	@Autowired
 	private GasStationRepository gsRepository;
 	
-	@Autowired
-	GasStationService gsService;
-	
 	public Address saveAddress(Long gasStation_id, Address address) {
 		GasStation gasStation = gsRepository.getById(gasStation_id);
 		
@@ -31,6 +30,28 @@ public class AddressService {
 		gsRepository.save(gasStation);
 		
 		return address;
+	}
+	
+	public Address partialUpdate(Long id, Map<String, String> fields) {
+		Optional<Address> entity = repository.findById(id);
+		
+		if(entity.isPresent()) {
+			fillProperty(fields, entity.get());
+			return repository.save(entity.get());
+		}
+		return null;
+	}
+	
+	public void fillProperty(Map<String, String> fields, Address address) {
+		fields.forEach((propertyName, propertyValue) -> {
+			Field field = ReflectionUtils.findField(Address.class, propertyName);
+			field.setAccessible(true);
+			
+			System.out.println(propertyName + " = " + propertyValue);
+			
+			ReflectionUtils.setField(field, address, propertyValue);
+			System.out.println(field.toString());
+		});
 	}
 	
 	public Address updateAddress(Long id, Address address) {

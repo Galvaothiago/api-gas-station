@@ -1,10 +1,13 @@
 package com.gasstation.api.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,6 +41,18 @@ public class AddressController {
 		Address updatedAddress = service.updateAddress(id, address);
 		
 		return ResponseEntity.ok().body(updatedAddress);
+	}
+	
+	@PatchMapping(value = "/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<Address> PartialUpdate(@PathVariable Long id, @RequestBody Map<String, String> fields) {
+		Address updatedAddress = service.partialUpdate(id, fields);
+		
+		if(updatedAddress != null) {
+			return ResponseEntity.ok().body(updatedAddress);
+		}
+		
+		return ResponseEntity.notFound().build();
 	}
 	
 	@GetMapping(path = "/count/{city}")
