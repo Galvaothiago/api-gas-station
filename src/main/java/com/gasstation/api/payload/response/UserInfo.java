@@ -1,21 +1,20 @@
 package com.gasstation.api.payload.response;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-import com.gasstation.api.model.auth.Role;
+import com.gasstation.api.model.auth.ERole;
 
 public class UserInfo {
 	private Long id;
 	private String username;
 	private String email;
-	private Set<Role> roles = new HashSet<>();
+	private List<ERole> roles;
 	
 	public UserInfo() {
 		
 	}
 	
-	public UserInfo(Long id, String username, String email, Set<Role> roles) {
+	public UserInfo(Long id, String username, String email, List<ERole> roles) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
@@ -46,11 +45,11 @@ public class UserInfo {
 		this.email = email;
 	}
 
-	public Set<Role> getRoles() {
+	public List<ERole> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(List<ERole> roles) {
 		this.roles = roles;
 	}
 	

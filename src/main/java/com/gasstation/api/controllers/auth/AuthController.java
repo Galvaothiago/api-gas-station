@@ -170,10 +170,13 @@ public class AuthController {
 			  if(user.isPresent()) {
 				  User userInfo = user.get();
 				  
+				  List<ERole> roles = userInfo.getRoles().stream()
+						  .map(value -> value.getName()).collect(Collectors.toList());
+			  
 				  UserInfo u = new UserInfo(userInfo.getId(), 
 						  userInfo.getUsername(), 
 						  userInfo.getEmail(), 
-						  userInfo.getRoles());
+						  roles);
 				  
 				  return ResponseEntity.ok().body(u);
 			  }				
