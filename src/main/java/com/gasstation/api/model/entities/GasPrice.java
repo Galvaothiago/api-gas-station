@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -179,7 +180,4 @@ public class GasPrice implements Serializable{
 		GasPrice other = (GasPrice) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
 }
