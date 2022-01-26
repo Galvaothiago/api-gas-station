@@ -84,9 +84,8 @@ public class GasStationController {
 		return ResponseEntity.ok().body(result);
 	}
 	
-	
 	@GetMapping
-	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<List<GasStation>> getAll() {
 		List<GasStation> list = service.getAll();
 

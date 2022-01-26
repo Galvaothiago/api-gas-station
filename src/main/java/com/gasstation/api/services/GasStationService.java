@@ -29,7 +29,6 @@ public class GasStationService {
 		
 		Pageable pageResult = PageRequest.of(page, quantityItems);
 		return repository.findAll(pageResult);
-		
 	}
 	
 	public GasStation findById(Long id) {
