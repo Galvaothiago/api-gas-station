@@ -188,7 +188,9 @@ public class AuthController {
 			  logger.error(e.getMessage());
 		  } catch(ExpiredJwtException e) {
 			  logger.error(e.getMessage());
-		  } 
+		  } catch(NullPointerException e) {
+			  logger.error(e.getMessage());
+		  }
 		  
 		  return ResponseEntity.notFound().build();
 	  }
