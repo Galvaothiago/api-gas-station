@@ -31,8 +31,5 @@ public interface GasStationRepository extends JpaRepository<GasStation, Long> {
 	@Override
 	@Query("select g from GasStation g join fetch g.prices join fetch g.address")
 	public List<GasStation> findAll();
-	
-	@Override
-	@Query("select g from GasStation g join g.prices")
-	public Page<GasStation> findAll(Pageable pageable);
+
 }

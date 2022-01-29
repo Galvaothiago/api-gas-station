@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.gasstation.api.model.entities.GasStation;
 import com.gasstation.api.repositories.GasStationRepository;
@@ -63,7 +66,13 @@ public class GasStationService {
 	}
 	
 	public void deleteGasStation(Long id) {
-		repository.deleteById(id);
+		try {
+			
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Not exist a GasStation with id %d", id));
+			
+		}
 	}
 	
 	public Iterable<GasStation> findByAddressStreet(String street, int page, int quantityItems) {
