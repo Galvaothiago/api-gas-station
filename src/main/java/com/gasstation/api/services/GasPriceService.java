@@ -24,14 +24,17 @@ public class GasPriceService {
 		GasStation gasStation = gsRepository.getById(gasStation_id);
 		
 		gasPrice.setId(gasStation.getId());
+		
 		gasStation.setPrices(gasPrice);
 		
 		gsRepository.save(gasStation);
 		return gasPrice;
 	}
 	
-	public GasPrice updateGasPrice(Long id, GasPrice gasPrice) {
+	public GasPrice updatePrice(Long id, GasPrice gasPrice, String username) {
 		GasPrice entity = repository.getById(id);
+		
+		gasPrice.setUpdatedBy(username);
 		update(entity, gasPrice);
 		return repository.save(entity);
 		
@@ -50,5 +53,6 @@ public class GasPriceService {
 		entity.setUpdatedBy(gasPrice.getUpdatedBy());
 		
 	}
+	
 }
  
