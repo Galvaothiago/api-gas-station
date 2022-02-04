@@ -3,8 +3,8 @@ package com.gasstation.api.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,8 +21,10 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String street;
+	@Column(name = "address_number")
 	private String number;
 	private String city;
+	@Column(name = "address_state")
 	private String state;
 	
 	@JsonIgnore
