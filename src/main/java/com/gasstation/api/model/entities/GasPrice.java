@@ -5,12 +5,14 @@ import java.time.Instant;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,16 +23,36 @@ public class GasPrice implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@PositiveOrZero
+	@NotBlank
 	private Double gasoline;
+	@PositiveOrZero
+	@NotBlank
 	private Double ethanol;
+	
+	@PositiveOrZero
+	@NotBlank
 	private Double diesel;
+	@PositiveOrZero
+	@NotBlank
 	private Double gasolineAdditive;
+	
+	@PositiveOrZero
+	@NotBlank
 	private Double ethanolAdditive;
+	
+	@PositiveOrZero
+	@NotBlank
 	private Double relation_gas_ethanol;
+	
+	@PositiveOrZero
+	@NotBlank
 	private Instant updatedAt;
+	
 	private Double lastGasPrice;
 	private Double lastEthanolPrice;
 	
+	@NotBlank
 	private String updatedBy;
 
 	@JsonIgnore
@@ -55,7 +77,7 @@ public class GasPrice implements Serializable{
 		this.lastEthanolPrice = 0.00D;
 		this.lastGasPrice = 0.00D;
 		this.updatedBy = updateBy;
-		setRelationGasEthanol();
+		relationGasEthanol();
 	}
 
 	public Long getId() {
@@ -127,7 +149,7 @@ public class GasPrice implements Serializable{
 		this.gasStation = gasStation;
 	}
 	
-	public void setRelationGasEthanol() {
+	public void relationGasEthanol() {
 		Double gasoline = getGasoline();
 		Double ethanol = getEthanol();
 		

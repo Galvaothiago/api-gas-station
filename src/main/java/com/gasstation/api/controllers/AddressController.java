@@ -2,6 +2,8 @@ package com.gasstation.api.controllers;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,7 +31,7 @@ public class AddressController {
 	
 	@PostMapping(path = "/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<Address> saveAddress(@PathVariable Long id, @RequestBody Address address) {
+	public ResponseEntity<Address> saveAddress(@PathVariable Long id, @Valid @RequestBody Address address) {
 		Address address1 = service.saveAddress(id, address);
 		
 		return ResponseEntity.ok().body(address1);
@@ -37,7 +39,7 @@ public class AddressController {
 	
 	@PutMapping(value = "/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<Address> updateAddress(@PathVariable Long id, @RequestBody Address address) {
+	public ResponseEntity<Address> updateAddress(@PathVariable Long id, @Valid @RequestBody Address address) {
 		Address updatedAddress = service.updateAddress(id, address);
 		
 		return ResponseEntity.ok().body(updatedAddress);
@@ -57,7 +59,7 @@ public class AddressController {
 	
 	@GetMapping(path = "/count/{city}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<CountingCity> countByCity(@PathVariable String city) {
+	public ResponseEntity<CountingCity> countByCity(@PathVariable @Valid String city) {
 		CountingCity result = service.countingByCity(city);
 		
 		return ResponseEntity.ok().body(result);

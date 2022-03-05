@@ -185,7 +185,7 @@ public class AuthController {
 					   
 			  
 		  } catch(ArrayIndexOutOfBoundsException e) {
-			  logger.error(e.getMessage());
+			  throw new RuntimeException(e.getMessage());
 		  } catch(ExpiredJwtException e) {
 			  logger.error(e.getMessage());
 		  } catch(NullPointerException e) {

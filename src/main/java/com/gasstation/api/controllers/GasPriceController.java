@@ -1,6 +1,7 @@
 package com.gasstation.api.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gasstation.api.model.auth.User;
 import com.gasstation.api.model.entities.GasPrice;
 import com.gasstation.api.services.GasPriceService;
 import com.gasstation.api.services.GetByToken;
@@ -31,7 +31,7 @@ public class GasPriceController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping(path = "/{id}")
-	public ResponseEntity<GasPrice> saveGasPrice(@PathVariable Long id, @RequestBody GasPrice gasPrice) {		
+	public ResponseEntity<GasPrice> saveGasPrice(@PathVariable Long id, @Valid @RequestBody GasPrice gasPrice) {		
 		GasPrice result = service.savePrice(id, gasPrice);
 		
 		return ResponseEntity.ok().body(result);
@@ -39,7 +39,7 @@ public class GasPriceController {
 	
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<GasPrice> updateGasPrice(@PathVariable Long id, @RequestBody GasPrice gasPrice, HttpServletRequest request) {
+	public ResponseEntity<GasPrice> updateGasPrice(@PathVariable Long id, @Valid @RequestBody GasPrice gasPrice, HttpServletRequest request) {
 		String username = getByToken.username(request);
 		
 		GasPrice result = service.updatePrice(id, gasPrice, username);

@@ -49,7 +49,7 @@ public class GasPriceService {
 		entity.setGasolineAdditive(gasPrice.getGasolineAdditive());
 		entity.setEthanolAdditive(gasPrice.getEthanolAdditive());
 		entity.setupdatedAt(Instant.now());
-		entity.setRelationGasEthanol();
+		entity.relationGasEthanol();
 		entity.setUpdatedBy(gasPrice.getUpdatedBy());
 		
 	}
