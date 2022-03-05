@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.gasstation.api.exceptions.GasStationNotFoundException;
 import com.gasstation.api.model.entities.GasStation;
 import com.gasstation.api.repositories.GasStationRepository;
 
@@ -41,7 +42,7 @@ public class GasStationService {
 			return result.get();
 		}
 		
-		return null;
+		throw new GasStationNotFoundException(String.format("Gas station with id %d not found", id));
 	}
 	
 	public Iterable<GasStation> getByName(String name) {
