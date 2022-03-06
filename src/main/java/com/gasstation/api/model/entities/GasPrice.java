@@ -10,9 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,36 +23,30 @@ public class GasPrice implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@PositiveOrZero
-	@NotBlank
+	
+	@DecimalMin(value = "0.1")
 	private Double gasoline;
-	@PositiveOrZero
-	@NotBlank
+	
+	@DecimalMin(value = "0.1")
 	private Double ethanol;
 	
-	@PositiveOrZero
-	@NotBlank
+	@DecimalMin(value = "0.1")
 	private Double diesel;
-	@PositiveOrZero
-	@NotBlank
+	
+	@DecimalMin(value = "0.1")
 	private Double gasolineAdditive;
 	
-	@PositiveOrZero
-	@NotBlank
+	@DecimalMin(value = "0.1")
 	private Double ethanolAdditive;
 	
-	@PositiveOrZero
-	@NotBlank
 	private Double relation_gas_ethanol;
 	
-	@PositiveOrZero
-	@NotBlank
 	private Instant updatedAt;
 	
 	private Double lastGasPrice;
+	
 	private Double lastEthanolPrice;
 	
-	@NotBlank
 	private String updatedBy;
 
 	@JsonIgnore

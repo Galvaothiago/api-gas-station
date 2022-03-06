@@ -1,0 +1,1 @@
+ALTER TABLE gas_station CHANGE is_there_convenience has_convenience boolean;

@@ -2,6 +2,8 @@ package com.gasstation.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gasstation.api.model.entities.GasStation;
@@ -85,7 +86,7 @@ public class GasStationController {
 	}
 	
 	@GetMapping
-//	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<List<GasStation>> getAll() {
 		List<GasStation> list = service.getAll();
 
@@ -96,15 +97,12 @@ public class GasStationController {
 	public ResponseEntity<GasStation> getById(@PathVariable Long id) {
 		GasStation result = service.findById(id);
 		
-		if(result != null) {
-			return ResponseEntity.ok().body(result);	
-		}
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.ok().body(result);
 	}
 	
 	@PutMapping(value = "/{id}")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public ResponseEntity<GasStation> updateGasStation(@PathVariable Long id, @RequestBody GasStation gasStation) {
+	public ResponseEntity<GasStation> updateGasStation(@PathVariable Long id, @Valid @RequestBody GasStation gasStation) {
 		GasStation result = service.updateInfoGasStation(id, gasStation);
 		
 		return ResponseEntity.ok().body(result);
@@ -112,7 +110,7 @@ public class GasStationController {
 
 	@PostMapping
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<GasStation> createGasStation(@RequestBody GasStation gasStation) {
+	public ResponseEntity<GasStation> createGasStation(@Valid @RequestBody GasStation gasStation) {
 		GasStation result = service.saveGasStation(gasStation);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(result);
