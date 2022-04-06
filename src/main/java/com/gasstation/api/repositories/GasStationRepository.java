@@ -16,6 +16,9 @@ public interface GasStationRepository extends JpaRepository<GasStation, Long> {
 	
 	public Iterable<GasStation> findByNameContainingIgnoreCase(String name);
 	
+	@Query("select g.name from GasStation g where g.id = ?1")
+	public String findGasStationNameById(Long id);
+	
 	@Query("select g from GasStation g join fetch g.prices join fetch g.address address where UPPER(address.street) like %?1%")
 	public Slice<GasStation> findByAddressStreet(String street, Pageable pageable);
 	
