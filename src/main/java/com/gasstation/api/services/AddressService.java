@@ -24,7 +24,7 @@ public class AddressService {
 	
 	public Address saveAddress(Long gasStation_id, Address address) {
 		GasStation gasStation = gsRepository.getById(gasStation_id);
-		
+		 
 		address.setId(gasStation.getId());
 		gasStation.setAddress(address);
 		gsRepository.save(gasStation);
@@ -47,10 +47,7 @@ public class AddressService {
 			Field field = ReflectionUtils.findField(Address.class, propertyName);
 			field.setAccessible(true);
 			
-			System.out.println(propertyName + " = " + propertyValue);
-			
 			ReflectionUtils.setField(field, address, propertyValue);
-			System.out.println(field.toString());
 		});
 	}
 	
