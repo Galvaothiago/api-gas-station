@@ -50,15 +50,10 @@ public class UploadPhoto {
 		}
 		
 		String photoName = defaultName + "-" + UUID.randomUUID().toString();
-		
 		Path filePhoto = Path.of("/home/thiagogalvao/gas_station_photos", photoName);
-		
-		System.out.println(photoName);
-		System.out.println(photo.getContentType());
 		
 		try {
 			photo.transferTo(filePhoto);
-			System.out.println("photo sent!");
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}
